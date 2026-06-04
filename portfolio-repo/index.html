@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Layson S — Web App Developer · Android App Creator · Data Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0b0c0e;
+    --bg2: #111316;
+    --bg3: #181b1f;
+    --card: #1c2026;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.13);
+    --accent: #5EE8A0;
+    --accent2: #3dd4ff;
+    --text: #f0f0ee;
+    --muted: #8a8f9a;
+    --tag-bg: rgba(94,232,160,0.1);
+    --tag-color: #5EE8A0;
+    --sans: 'Manrope', sans-serif;
+    --serif: 'DM Serif Display', serif;
+    --mono: 'DM Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: radial-gradient(circle at top, rgba(94,232,160,0.09), transparent 32%), linear-gradient(180deg, #0b0c0e 0%, #111316 100%);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.75;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 8%;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background: rgba(94,232,160,0.06);
+    filter: blur(60px);
+    pointer-events: none;
+  }
+
+  body::after {
+    content: '';
+    position: absolute;
+    bottom: 8%;
+    right: 6%;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: rgba(61,212,255,0.05);
+    filter: blur(60px);
+    pointer-events: none;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: rgba(11,12,14,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 0.5px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 56px;
+    z-index: 100;
+  }
+
+  .logo {
+    font-family: var(--serif);
+    font-size: 20px;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+
+  nav a {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  nav a:hover { color: var(--text); }
+
+  main { padding-top: 56px; position: relative; }
+
+  main::before {
+    content: '';
+    position: absolute;
+    top: 120px;
+    left: 2rem;
+    right: 2rem;
+    height: 1px;
+    background: rgba(94,232,160,0.08);
+    pointer-events: none;
+  }
+
+  section {
+    max-width: none;
+    margin: 0 2rem;
+    padding: 4.5rem 3rem;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-left: 4px solid rgba(94,232,160,0.16);
+    border-radius: 28px;
+  }
+
+  section + section {
+    margin-top: 1.75rem;
+  }
+
+  #hero {
+    min-height: calc(100vh - 56px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 4rem;
+    background: rgba(255,255,255,0.035);
+  }
+
+  /* Hero */
+  #hero {
+    min-height: calc(100vh - 56px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 3rem;
+  }
+
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+
+  h1 em {
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-links {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 8vw, 5.2rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 1.2rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: all 0.18s;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #5EE8A0, #3dd4ff);
+    color: #0b0c0e;
+    border: none;
+    box-shadow: 0 16px 30px rgba(94,232,160,0.18);
+  }
+
+  .btn-primary:hover { background: linear-gradient(135deg, #7cf5ba, #6ad9ff); transform: translateY(-1px); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text);
+    border: 0.5px solid var(--border2);
+  }
+
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Section header */
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--text);
+    letter-spacing: -0.02em;
+    margin-bottom: 2.5rem;
+    line-height: 1.1;
+  }
+
+  /* About */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .about-text p { color: var(--muted); margin-bottom: 1rem; font-size: 15px; line-height: 1.8; }
+
+  .about-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .stat-card {
+    background: var(--card);
+    border: 0.5px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+  }
+
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 2.2rem;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label { font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: 0.04em; }
+
+  /* Experience */
+  .exp-item {
+    background: var(--card);
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem 1.75rem;
+    position: relative;
+    margin-bottom: 1rem;
+  }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .exp-role { font-size: 16px; font-weight: 600; color: var(--text); }
+  .exp-company { font-size: 13px; color: var(--accent); font-weight: 500; margin-top: 2px; }
+  .exp-date { font-family: var(--mono); font-size: 11px; color: var(--muted); white-space: nowrap; padding-top: 4px; }
+
+  .exp-item ul { padding-left: 1.2rem; }
+  .exp-item li { font-size: 13.5px; color: var(--muted); margin-bottom: 6px; line-height: 1.65; }
+
+  /* Projects */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .proj-card {
+    background: var(--card);
+    border: 0.5px solid var(--border);
+    border-radius: 18px;
+    padding: 1.7rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 18px 42px rgba(0,0,0,0.12);
+  }
+
+  .proj-card:hover { border-color: var(--border2); transform: translateY(-2px); box-shadow: 0 24px 48px rgba(0,0,0,0.16); }
+
+  .proj-icon {
+    min-width: 40px; height: 40px;
+    padding: 0 10px;
+    border-radius: 10px;
+    background: var(--tag-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .proj-name { font-size: 15px; font-weight: 600; color: var(--text); line-height: 1.3; }
+  .proj-desc { font-size: 13px; color: var(--muted); line-height: 1.65; flex: 1; }
+  .proj-date { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    background: var(--tag-bg);
+    color: var(--tag-color);
+    border-radius: 4px;
+    padding: 3px 8px;
+  }
+
+  .tag-blue { background: rgba(61,212,255,0.1); color: var(--accent2); }
+  .tag-gray { background: rgba(255,255,255,0.07); color: var(--muted); }
+
+  /* Skills */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+
+  .skill-group {
+    background: var(--card);
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.4rem;
+  }
+
+  .skill-group-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.85rem;
+    font-family: var(--mono);
+  }
+
+  .skill-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .pill {
+    font-size: 12px;
+    font-weight: 500;
+    background: rgba(255,255,255,0.06);
+    color: var(--text);
+    border-radius: 4px;
+    padding: 4px 10px;
+    border: 0.5px solid var(--border);
+  }
+
+  /* Contact */
+  #contact { padding-bottom: 6rem; }
+
+  .contact-card {
+    background: var(--card);
+    border: 0.5px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .contact-icon {
+    width: 38px; height: 38px;
+    border-radius: 8px;
+    background: var(--tag-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 18px;
+    color: var(--accent);
+  }
+
+  .contact-label { font-size: 11px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 2px; }
+  .contact-val { font-size: 14px; color: var(--text); }
+  .contact-val a { color: var(--accent2); text-decoration: none; }
+  .contact-val a:hover { text-decoration: underline; }
+
+  .contact-divider { height: 0.5px; background: var(--border); }
+
+  footer {
+    text-align: left;
+    margin-left: 3.5rem;
+    padding: 2rem;
+    font-size: 12px;
+    color: var(--muted);
+    border-top: 0.5px solid var(--border);
+    font-family: var(--mono);
+  }
+
+  @media (max-width: 600px) {
+    nav ul { gap: 1rem; }
+    .about-grid { grid-template-columns: 1fr; }
+    section { padding: 3.5rem 1.25rem; }
+  }
+
+  /* ====== CRICKZY FEATURED CARD ====== */
+  .proj-card--featured {
+    grid-column: 1 / -1;
+    border-color: rgba(94,232,160,0.15);
+    background: linear-gradient(145deg, var(--card) 0%, rgba(94,232,160,0.03) 100%);
+    padding: 2rem;
+  }
+  .proj-card--featured:hover {
+    border-color: rgba(94,232,160,0.35);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.2), 0 0 40px rgba(94,232,160,0.06);
+  }
+
+  /* Slideshow */
+  .proj-slideshow {
+    position: relative;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #0b0c0e;
+    border: 0.5px solid var(--border);
+  }
+  .proj-slide {
+    display: none;
+    width: 100%;
+  }
+  .proj-slide.active { display: block; }
+  .proj-slide img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    max-height: 420px;
+    margin: 0 auto;
+    background: #0b0c0e;
+  }
+  .proj-slide-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    z-index: 2;
+  }
+  .proj-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+  }
+  .proj-dot.active {
+    background: var(--accent);
+    box-shadow: 0 0 6px rgba(94,232,160,0.5);
+  }
+
+  /* Feature Pills */
+  .proj-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .proj-feature-pill {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 6px;
+    background: rgba(94,232,160,0.07);
+    border: 0.5px solid rgba(94,232,160,0.15);
+    color: var(--text);
+    letter-spacing: 0.02em;
+  }
+
+  /* Architecture Mini */
+  .proj-arch {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.02);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+  }
+  .proj-arch-layer {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    padding: 3px 10px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 4px;
+    border: 0.5px solid var(--border);
+  }
+  .proj-arch-arrow {
+    color: var(--accent);
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .proj-arch-cloud {
+    background: rgba(61,212,255,0.08);
+    border-color: rgba(61,212,255,0.2);
+    color: var(--accent2);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">LS.</div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<!-- Hero -->
+<section id="hero">
+  <div class="hero-tag">Web App Developer · Android App Creator · Data Analyst</div>
+  <h1>LAYSON <em>S.</em></h1>
+  <p class="hero-sub">I build modern web applications, native Android apps, and data-driven dashboards. My work blends full-stack development, mobile engineering, and analytical reporting to deliver polished, real-world solutions.</p>
+  <div class="hero-links">
+    <a class="btn btn-primary" href="mailto:laysons007@gmail.com">Contact</a>
+    <a class="btn btn-ghost" href="#projects">View work</a>
+    <a class="btn btn-ghost" href="https://linkedin.com/in/layson-s-a9654032b" target="_blank">LinkedIn</a>
+    <a class="btn btn-ghost" href="https://github.com/Laysons12" target="_blank">GitHub</a>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about">
+  <div class="section-label">About</div>
+  <h2>Who I am</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>Final-year B.Sc. Computer Science &amp; Statistics candidate at CHRIST University, Bangalore, with hands-on experience in web development, Android app creation, and data analytics.</p>
+      <p>I enjoy building responsive web apps, crafting native Android experiences, and turning data into clear dashboards and reports that stakeholders can act on.</p>
+      <p>Expected graduation: May 2027. I am looking for roles that blend product delivery with insights-led decision support.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-card">
+        <div class="stat-num">4</div>
+        <div class="stat-label">End-to-end projects</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">1</div>
+        <div class="stat-label">Data analytics internship</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Production datasets maintained</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 3rem;">
+    <div class="section-label" style="margin-bottom: 1.2rem;">Experience</div>
+    <div class="exp-item">
+      <div class="exp-header">
+        <div>
+          <div class="exp-role">Data Analyst Intern</div>
+          <div class="exp-company">Digisnare Technologies · Bangalore</div>
+        </div>
+        <div class="exp-date">Apr 2025 – May 2025</div>
+      </div>
+      <ul>
+        <li>Developed Power BI and Tableau dashboards for operational reporting, KPI monitoring, and leadership review.</li>
+        <li>Designed and validated ETL workflows using SQL and Excel to improve reporting accuracy and data reliability.</li>
+        <li>Presented findings and recommendations to cross-functional stakeholders, enabling data-driven decisions.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section id="projects">
+  <div class="section-label">Selected work</div>
+  <h2>Selected work</h2>
+  <div class="projects-grid">
+
+    <!-- ====== CRICKZY — EXPANDED SHOWCASE ====== -->
+    <div class="proj-card proj-card--featured" id="crickzy">
+      <!-- Image Slideshow -->
+      <div class="proj-slideshow" id="crickzySlideshow">
+        <div class="proj-slide active"><img src="img/crickzy_scoring.png" alt="Live Scoring" /></div>
+        <div class="proj-slide"><img src="img/crickzy_bracket.png" alt="Tournament Bracket" /></div>
+        <div class="proj-slide"><img src="img/crickzy_qr.png" alt="QR Team Joining" /></div>
+        <div class="proj-slide-dots">
+          <span class="proj-dot active" onclick="crickzySlide(0)"></span>
+          <span class="proj-dot" onclick="crickzySlide(1)"></span>
+          <span class="proj-dot" onclick="crickzySlide(2)"></span>
+        </div>
+      </div>
+      <div class="proj-icon">Android</div>
+      <div>
+        <div class="proj-date">Jan 2026 – Present</div>
+        <div class="proj-name" style="font-size:18px;">Crickzy — Cricket Tournament Management Platform</div>
+      </div>
+      <div class="proj-desc">
+        A full-stack Android application for end-to-end cricket tournament management. Features include live ball-by-ball scoring with undo support, automatic knockout bracket generation with BYE seeding, round-robin league scheduling, QR-code-based team joining via deep links, NRR-based points table ranking, animated coin toss, turf booking with SMS confirmations, and organizer-only access control.
+      </div>
+
+      <!-- Feature Highlights -->
+      <div class="proj-features">
+        <div class="proj-feature-pill">🏏 Ball-by-Ball Scoring</div>
+        <div class="proj-feature-pill">🏆 Knockout + League Fixtures</div>
+        <div class="proj-feature-pill">📱 QR Code Team Joining</div>
+        <div class="proj-feature-pill">📊 NRR Points Table</div>
+        <div class="proj-feature-pill">🪙 Animated Coin Toss</div>
+        <div class="proj-feature-pill">🏟️ Turf Booking + SMS</div>
+      </div>
+
+      <!-- Architecture Mini -->
+      <div class="proj-arch">
+        <span class="proj-arch-layer">14 Activities · 9 Fragments</span>
+        <span class="proj-arch-arrow">→</span>
+        <span class="proj-arch-layer">SupabaseHelper (986 LOC)</span>
+        <span class="proj-arch-arrow">→</span>
+        <span class="proj-arch-layer proj-arch-cloud">Supabase · PostgreSQL</span>
+      </div>
+
+      <!-- Tech Tags -->
+      <div class="tags">
+        <span class="tag">Kotlin</span>
+        <span class="tag">Android SDK</span>
+        <span class="tag tag-blue">Supabase</span>
+        <span class="tag tag-blue">OkHttp</span>
+        <span class="tag tag-blue">Coroutines</span>
+        <span class="tag">ZXing</span>
+        <span class="tag tag-gray">Material Design 3</span>
+        <span class="tag tag-gray">Gson</span>
+        <span class="tag tag-gray">Coil</span>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-icon">Mobile</div>
+      <div>
+        <div class="proj-date">Apr 2026 – Jun 2026</div>
+        <div class="proj-name">Crav'n — Food Waste Reduction App</div>
+      </div>
+      <div class="proj-desc">Built a cross-platform marketplace connecting food donors, recipients, and partners, with maps-based discovery, secure authentication, and event-driven notifications.</div>
+      <div class="tags">
+        <span class="tag tag-blue">React + Vite</span>
+        <span class="tag tag-blue">Firebase</span>
+        <span class="tag tag-blue">Supabase</span>
+        <span class="tag tag-gray">Google Maps</span>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-icon">Research</div>
+      <div>
+        <div class="proj-date">Jun 2025 – Aug 2025</div>
+        <div class="proj-name">The Real Cost of Looking Good</div>
+      </div>
+      <div class="proj-desc">Conducted quantitative research on social media influence and spending habits, including survey design, dataset preparation, and statistical analysis of 100+ responses.</div>
+      <div class="tags">
+        <span class="tag">Research</span>
+        <span class="tag tag-gray">Excel</span>
+        <span class="tag tag-gray">Statistical Analysis</span>
+        <span class="tag tag-gray">Google Forms</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Skills -->
+<section id="skills">
+  <div class="section-label">Skills</div>
+  <h2>What I work with</h2>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title">Languages</div>
+      <div class="skill-pills">
+        <span class="pill">Kotlin</span>
+        <span class="pill">Java</span>
+        <span class="pill">JavaScript</span>
+        <span class="pill">SQL</span>
+        <span class="pill">R</span>
+        <span class="pill">C</span>
+        <span class="pill">HTML</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Mobile & Frontend</div>
+      <div class="skill-pills">
+        <span class="pill">Android SDK</span>
+        <span class="pill">React</span>
+        <span class="pill">Vite</span>
+        <span class="pill">Material Design 3</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Backend & Data</div>
+      <div class="skill-pills">
+        <span class="pill">Supabase</span>
+        <span class="pill">Firebase</span>
+        <span class="pill">MySQL</span>
+        <span class="pill">PostgreSQL</span>
+        <span class="pill">AWS</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Analytics & BI</div>
+      <div class="skill-pills">
+        <span class="pill">Power BI</span>
+        <span class="pill">Tableau</span>
+        <span class="pill">Excel</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Tools</div>
+      <div class="skill-pills">
+        <span class="pill">GitHub</span>
+        <span class="pill">Android Studio</span>
+        <span class="pill">VS Code</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Soft Skills</div>
+      <div class="skill-pills">
+        <span class="pill">Communication</span>
+        <span class="pill">Critical Thinking</span>
+        <span class="pill">Leadership</span>
+        <span class="pill">Teamwork</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="section-label">Let’s talk</div>
+  <h2>Let’s talk</h2>
+  <div class="contact-card">
+    <div class="contact-row">
+      <div class="contact-icon">✉</div>
+      <div>
+        <div class="contact-label">Email</div>
+        <div class="contact-val"><a href="mailto:laysons007@gmail.com">laysons007@gmail.com</a></div>
+      </div>
+    </div>
+    <div class="contact-divider"></div>
+    <div class="contact-row">
+      <div class="contact-icon">📞</div>
+      <div>
+        <div class="contact-label">Phone</div>
+        <div class="contact-val">+91 9591568702</div>
+      </div>
+    </div>
+    <div class="contact-divider"></div>
+    <div class="contact-row">
+      <div class="contact-icon">🔗</div>
+      <div>
+        <div class="contact-label">LinkedIn</div>
+        <div class="contact-val"><a href="https://linkedin.com/in/layson-s-a9654032b" target="_blank">linkedin.com/in/layson-s-a9654032b</a></div>
+      </div>
+    </div>
+    <div class="contact-divider"></div>
+    <div class="contact-row">
+      <div class="contact-icon">💻</div>
+      <div>
+        <div class="contact-label">GitHub</div>
+        <div class="contact-val"><a href="https://github.com/Laysons12" target="_blank">github.com/Laysons12</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  © 2026 Layson S · Bangalore, India
+</footer>
+
+<script>
+  // Crickzy slideshow
+  let crickzyIdx = 0;
+  function crickzySlide(i) {
+    const slides = document.querySelectorAll('#crickzySlideshow .proj-slide');
+    const dots = document.querySelectorAll('#crickzySlideshow .proj-dot');
+    slides.forEach(s => s.classList.remove('active'));
+    dots.forEach(d => d.classList.remove('active'));
+    crickzyIdx = i;
+    slides[i].classList.add('active');
+    dots[i].classList.add('active');
+  }
+  setInterval(() => {
+    const slides = document.querySelectorAll('#crickzySlideshow .proj-slide');
+    if (slides.length) crickzySlide((crickzyIdx + 1) % slides.length);
+  }, 4000);
+</script>
+
+</body>
+</html>
