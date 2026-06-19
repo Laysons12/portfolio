@@ -191,7 +191,16 @@
   .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
   .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
   .projects-stack { display: flex; flex-direction: column; align-items: center; gap: 2rem; width: 100%; }
-  .projects-stack .card { width: 100%; max-width: 800px; }
+  .projects-stack .card { 
+    width: 100%; 
+    max-width: 800px; 
+    text-align: center; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+  }
+  .projects-stack .card h3 { justify-content: center; }
+  .projects-stack .card-pills { justify-content: center; }
 
   /* Cards */
   .card {
@@ -421,9 +430,9 @@
         </div>
       </div>
 
-      <!-- FORGE -->
+      <!-- LYSA -->
       <div class="card">
-        <h3>FORGE — Security LLM</h3>
+        <h3>LYSA — Security LLM</h3>
         <p>Engineered a 125M parameter transformer language model trained from scratch using Apple MLX. Delivered a full-stack web app designed to generate secure Python code with pedagogical inline annotations.</p>
         <div class="card-pills">
           <div class="card-pill">Python</div>
