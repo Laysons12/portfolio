@@ -95,9 +95,9 @@
 
   /* Layout */
   main {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 120px 2rem 5rem;
+    max-width: 1000px;
+    margin: 0;
+    padding: 120px 2rem 5rem 8vw;
     display: flex;
     flex-direction: column;
     gap: 8rem;
@@ -179,8 +179,8 @@
 
   /* Section Headers */
   .section-header {
-    text-align: center;
-    margin-bottom: 4rem;
+    text-align: left;
+    margin-bottom: 3rem;
   }
   .section-header h2 {
     font-size: 2rem;
@@ -199,7 +199,7 @@
     transition: all 0.2s;
   }
   .card:hover { border-color: var(--border-highlight); background: var(--card-hover); }
-  .card h3 { font-size: 18px; margin-bottom: 1rem; }
+  .card h3 { font-size: 18px; margin-bottom: 1rem; display: flex; align-items: center; flex-wrap: wrap; }
   .card p { font-size: 14px; margin-bottom: 1.5rem; }
   
   /* Pills inside cards */
@@ -213,17 +213,58 @@
     color: var(--text-muted);
   }
 
+  /* SLIDESHOW */
+  .proj-slideshow {
+    position: relative;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #000;
+    border: 1px solid var(--border);
+    margin-bottom: 1.5rem;
+  }
+  .proj-slide { display: none; width: 100%; }
+  .proj-slide.active { display: block; }
+  .proj-slide img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    max-height: 350px;
+    background: #000;
+  }
+  .proj-slide-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 5px;
+    z-index: 2;
+  }
+  .proj-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.22);
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+  }
+  .proj-dot.active { background: var(--text-main); }
+  
+  .crickzy-card { cursor: pointer; }
+
   /* About Section */
   .about-text {
-    text-align: center;
+    text-align: left;
     max-width: 800px;
-    margin: 0 auto 4rem;
+    margin: 0 0 4rem 0;
     font-size: 15px;
     line-height: 1.8;
   }
 
   .approach-title {
-    text-align: center;
+    text-align: left;
     font-size: 16px;
     font-weight: 600;
     color: var(--text-main);
@@ -233,7 +274,7 @@
   .approach-grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 1rem;
     margin-bottom: 4rem;
   }
@@ -260,11 +301,11 @@
 
   .stats-grid {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
     gap: 4rem;
   }
-  .stat-item { text-align: center; }
+  .stat-item { text-align: left; }
   .stat-item h3 { font-size: 2.5rem; margin-bottom: 0.5rem; }
   .stat-item p { font-size: 13px; text-transform: capitalize; }
 
@@ -282,17 +323,17 @@
   }
 
   /* Contact Section */
-  .contact-section { text-align: center; }
+  .contact-section { text-align: left; }
   .contact-links {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 1.5rem;
     flex-wrap: wrap;
   }
   
   footer {
-    text-align: center;
-    padding: 3rem;
+    text-align: left;
+    padding: 3rem 2rem 3rem 8vw;
     font-size: 13px;
     color: var(--text-muted);
     border-top: 1px solid var(--border);
@@ -302,6 +343,8 @@
     nav ul { display: none; }
     nav { justify-content: space-between; padding: 12px 24px; }
     .stats-grid { gap: 2rem; }
+    main { padding-left: 2rem; }
+    footer { padding-left: 2rem; }
   }
 </style>
 </head>
@@ -346,9 +389,21 @@
     </div>
     <div class="grid-2">
       <!-- Crickzy -->
-      <div class="card">
-        <h3>Crickzy — Tournament Platform</h3>
+      <div class="card crickzy-card" onclick="toggleCrickzyGallery()">
+        <h3>Crickzy — Tournament Platform <span style="font-size: 11px; font-weight: normal; color: var(--text-muted); margin-left: 8px; background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 100px;">Click to view photos</span></h3>
         <p>A full-stack Android application for end-to-end cricket tournament management. Features include live ball-by-ball scoring, automatic knockout bracket generation, and QR-code team joining.</p>
+        
+        <div class="proj-slideshow" id="crickzySlideshow" style="display: none;">
+          <div class="proj-slide active"><img src="img/crickzy_scoring.png" alt="Live Scoring" /></div>
+          <div class="proj-slide"><img src="img/crickzy_bracket.png" alt="Tournament Bracket" /></div>
+          <div class="proj-slide"><img src="img/crickzy_qr.png" alt="QR Team Joining" /></div>
+          <div class="proj-slide-dots">
+            <span class="proj-dot active" onclick="event.stopPropagation(); crickzySlide(0)"></span>
+            <span class="proj-dot" onclick="event.stopPropagation(); crickzySlide(1)"></span>
+            <span class="proj-dot" onclick="event.stopPropagation(); crickzySlide(2)"></span>
+          </div>
+        </div>
+
         <div class="card-pills">
           <div class="card-pill">Android SDK</div>
           <div class="card-pill">Kotlin</div>
@@ -493,5 +548,33 @@
   © 2026 Layson S · Bangalore, India
 </footer>
 
+<script>
+  let crickzyIdx = 0;
+  function crickzySlide(i) {
+    const slides = document.querySelectorAll('#crickzySlideshow .proj-slide');
+    const dots = document.querySelectorAll('#crickzySlideshow .proj-dot');
+    slides.forEach(s => s.classList.remove('active'));
+    dots.forEach(d => d.classList.remove('active'));
+    crickzyIdx = i;
+    slides[i].classList.add('active');
+    dots[i].classList.add('active');
+  }
+  setInterval(() => {
+    const slideshow = document.getElementById('crickzySlideshow');
+    if(slideshow && slideshow.style.display !== 'none') {
+      const slides = document.querySelectorAll('#crickzySlideshow .proj-slide');
+      if (slides.length) crickzySlide((crickzyIdx + 1) % slides.length);
+    }
+  }, 4000);
+
+  function toggleCrickzyGallery() {
+    const gallery = document.getElementById('crickzySlideshow');
+    if (gallery.style.display === 'none' || gallery.style.display === '') {
+      gallery.style.display = 'block';
+    } else {
+      gallery.style.display = 'none';
+    }
+  }
+</script>
 </body>
 </html>
