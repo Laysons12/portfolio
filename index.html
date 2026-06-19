@@ -133,18 +133,19 @@
     justify-content: center;
     min-height: 70vh;
   }
-  .hero-eyebrow {
-    font-size: 14px;
+  .hero h1 {
+    font-size: clamp(4rem, 8vw, 6rem);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    max-width: 800px;
+  }
+  .hero-role {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
     font-weight: 500;
     color: var(--text-main);
     margin-bottom: 1.5rem;
   }
-  .hero h1 {
-    font-size: clamp(4rem, 8vw, 6rem);
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
-    max-width: 800px;
-  }
+
   .hero p {
     font-size: 16px;
     max-width: 500px;
@@ -374,8 +375,8 @@
 
   <!-- Hero -->
   <section class="hero">
-    <div class="hero-eyebrow">I am Layson S.</div>
-    <h1>Web App Developer & Data Analyst</h1>
+    <h1>Layson S.</h1>
+    <div class="hero-role">Web App Developer & Data Analyst</div>
     <p>Blending thoughtful UI design with clean, responsive development. I build modern web applications, native Android apps, and data-driven dashboards to deliver polished, real-world solutions.</p>
     <div class="hero-actions">
       <a href="mailto:laysons007@gmail.com" class="btn btn-primary">Contact Me</a>
