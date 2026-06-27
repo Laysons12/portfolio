@@ -231,46 +231,21 @@
     color: var(--text-main);
   }
 
-  /* SLIDESHOW */
-  .proj-slideshow {
-    position: relative;
+  /* PROJECT GALLERY */
+  .proj-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
     width: 100%;
-    border-radius: 8px;
-    overflow: hidden;
-    background: #000;
-    border: 1px solid var(--border);
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
   }
-  .proj-slide { display: none; width: 100%; }
-  .proj-slide.active { display: block; }
-  .proj-slide img {
+  .proj-gallery img {
     width: 100%;
     height: auto;
-    display: block;
-    object-fit: contain;
-    max-height: 350px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
     background: #000;
   }
-  .proj-slide-dots {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 5px;
-    z-index: 2;
-  }
-  .proj-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.22);
-    cursor: pointer;
-    transition: all 0.2s;
-    border: none;
-  }
-  .proj-dot.active { background: var(--text-main); }
-  
-  .crickzy-card { cursor: pointer; }
 
   /* About Section */
   .about-text {
@@ -407,19 +382,14 @@
     </div>
     <div class="projects-stack">
       <!-- Crickzy -->
-      <div class="card crickzy-card" onclick="toggleCrickzyGallery()">
-        <h3>Crickzy — Tournament Platform <span style="font-size: 11px; font-weight: normal; color: var(--text-muted); margin-left: 8px; background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 100px;">Click to view photos</span></h3>
+      <div class="card">
+        <h3>Crickzy — Tournament Platform</h3>
         <p>A full-stack Android application for end-to-end cricket tournament management. Designed an intuitive scoring interface with undo capabilities, round-robin league scheduling, and NRR-based points table ranking. Implemented secure organiser-only access and turf booking with automated SMS confirmations using Supabase.</p>
         
-        <div class="proj-slideshow" id="crickzySlideshow" style="display: none;">
-          <div class="proj-slide active"><img src="img/crickzy_scoring.png" alt="Live Scoring" /></div>
-          <div class="proj-slide"><img src="img/crickzy_bracket.png" alt="Tournament Bracket" /></div>
-          <div class="proj-slide"><img src="img/crickzy_qr.png" alt="QR Team Joining" /></div>
-          <div class="proj-slide-dots">
-            <span class="proj-dot active" onclick="event.stopPropagation(); crickzySlide(0)"></span>
-            <span class="proj-dot" onclick="event.stopPropagation(); crickzySlide(1)"></span>
-            <span class="proj-dot" onclick="event.stopPropagation(); crickzySlide(2)"></span>
-          </div>
+        <div class="proj-gallery">
+          <img src="img/crickzy_scoring.png" alt="Live Scoring" />
+          <img src="img/crickzy_bracket.png" alt="Tournament Bracket" />
+          <img src="img/crickzy_qr.png" alt="QR Team Joining" />
         </div>
 
         <div class="card-pills">
@@ -567,33 +537,6 @@
   © 2026 Layson S · Bangalore, India
 </footer>
 
-<script>
-  let crickzyIdx = 0;
-  function crickzySlide(i) {
-    const slides = document.querySelectorAll('#crickzySlideshow .proj-slide');
-    const dots = document.querySelectorAll('#crickzySlideshow .proj-dot');
-    slides.forEach(s => s.classList.remove('active'));
-    dots.forEach(d => d.classList.remove('active'));
-    crickzyIdx = i;
-    slides[i].classList.add('active');
-    dots[i].classList.add('active');
-  }
-  setInterval(() => {
-    const slideshow = document.getElementById('crickzySlideshow');
-    if(slideshow && slideshow.style.display !== 'none') {
-      const slides = document.querySelectorAll('#crickzySlideshow .proj-slide');
-      if (slides.length) crickzySlide((crickzyIdx + 1) % slides.length);
-    }
-  }, 4000);
 
-  function toggleCrickzyGallery() {
-    const gallery = document.getElementById('crickzySlideshow');
-    if (gallery.style.display === 'none' || gallery.style.display === '') {
-      gallery.style.display = 'block';
-    } else {
-      gallery.style.display = 'none';
-    }
-  }
-</script>
 </body>
 </html>
