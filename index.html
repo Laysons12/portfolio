@@ -334,6 +334,45 @@
     border-top: 1px solid var(--border);
   }
 
+  /* Lightbox Modal */
+  .lightbox {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9);
+  }
+  .lightbox-content {
+    margin: auto;
+    display: block;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 8px;
+    animation: zoom 0.3s ease;
+  }
+  @keyframes zoom {
+    from {transform:scale(0.95); opacity:0;}
+    to {transform:scale(1); opacity:1;}
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+  .lightbox-close:hover {
+    color: #bbb;
+  }
+
   @media (max-width: 768px) {
     nav ul { display: none; }
     nav { justify-content: space-between; padding: 12px 24px; }
@@ -402,9 +441,9 @@
         <p>A full-stack Android application for end-to-end cricket tournament management. Designed an intuitive scoring interface with undo capabilities, round-robin league scheduling, and NRR-based points table ranking. Implemented secure organiser-only access and turf booking with automated SMS confirmations using Supabase.</p>
         
         <div class="proj-gallery">
-          <img src="img/crickzy_scoring.png" alt="Live Scoring" />
-          <img src="img/crickzy_bracket.png" alt="Tournament Bracket" />
-          <img src="img/crickzy_qr.png" alt="QR Team Joining" />
+          <img src="img/crickzy_scoring.png" alt="Live Scoring" onclick="openLightbox(this.src)" style="cursor: pointer;" />
+          <img src="img/crickzy_bracket.png" alt="Tournament Bracket" onclick="openLightbox(this.src)" style="cursor: pointer;" />
+          <img src="img/crickzy_qr.png" alt="QR Team Joining" onclick="openLightbox(this.src)" style="cursor: pointer;" />
         </div>
 
         <div class="card-pills">
@@ -554,5 +593,20 @@
 </footer>
 
 
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img class="lightbox-content" id="lightbox-img">
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      document.getElementById('lightbox').style.display = "block";
+      document.getElementById('lightbox-img').src = src;
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = "none";
+    }
+  </script>
 </body>
 </html>
