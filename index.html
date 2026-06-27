@@ -381,6 +381,38 @@
       <h2>Projects</h2>
     </div>
     <div class="projects-stack">
+      <!-- GrowLog -->
+      <div class="card">
+        <h3>GrowLog — Personal Growth & Study Companion</h3>
+        <p>A cross-platform mobile application designed to help students and professionals build consistency in their learning routines. Users select active topics, log daily sessions, track focus/energy levels, and unlock gamified achievements.</p>
+        
+        <div style="text-align: left; margin: 1.5rem 0; width: 100%;">
+          <h4 style="font-size: 14px; margin-bottom: 0.5rem; color: var(--text-main);">Key Features</h4>
+          <ul style="font-size: 13.5px; margin-left: 1.25rem; margin-bottom: 1rem; color: var(--text-muted); line-height: 1.7;">
+            <li style="margin-bottom: 0.25rem;"><strong>Dual Modes:</strong> Student mode for academic tracking and Professional mode for skills development.</li>
+            <li style="margin-bottom: 0.25rem;"><strong>Smart Check-in:</strong> Duplicate prevention system that auto-populates and switches to Update Mode if a subject is logged twice.</li>
+            <li style="margin-bottom: 0.25rem;"><strong>Interactive Analytics:</strong> Dynamic weekly bar charts illustrating study hours over the last 7 days.</li>
+            <li style="margin-bottom: 0.25rem;"><strong>Gamification:</strong> Streak counters and locally-stored milestone badges (e.g., 7-Day Streak, 100 Entries).</li>
+            <li style="margin-bottom: 0.25rem;"><strong>Timeline Journal:</strong> A historical calendar to review logs (past days read-only).</li>
+            <li><strong>Multi-User Profiles:</strong> Securely partitioned local DB keys to switch between accounts without state leaks.</li>
+          </ul>
+
+          <h4 style="font-size: 14px; margin-bottom: 0.5rem; color: var(--text-main);">Under the Hood</h4>
+          <ul style="font-size: 13.5px; margin-left: 1.25rem; color: var(--text-muted); line-height: 1.7;">
+            <li style="margin-bottom: 0.25rem;"><strong>Frontend:</strong> Flutter & Dart for a compiled, smooth UI.</li>
+            <li style="margin-bottom: 0.25rem;"><strong>Local-First Storage:</strong> Hive DB for fast, offline, on-device key-value storage.</li>
+            <li><strong>Native Integrations:</strong> FL Chart, exact alarms with Flutter Local Notifications, and custom Kotlin/Swift MethodChannels.</li>
+          </ul>
+        </div>
+
+        <div class="card-pills">
+          <div class="card-pill">Flutter</div>
+          <div class="card-pill">Dart</div>
+          <div class="card-pill">Hive DB</div>
+          <div class="card-pill">FL Chart</div>
+        </div>
+      </div>
+
       <!-- Crickzy -->
       <div class="card">
         <h3>Crickzy — Tournament Platform</h3>
